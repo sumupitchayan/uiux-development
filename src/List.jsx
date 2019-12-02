@@ -13,10 +13,11 @@ class List extends Component {
           <img src={"images/guitars/" + item.id + ".png"} alt={item.name}></img>
           <h3>{item.brand} {item.name}</h3>
           <h3 id="price">${item.price}.00</h3>
+          <img id="favorite" src = "images/heart_outline.jpeg" alt = ""></img>
         </div>
       );
     });
-    if (items.length == 0) {
+    if (items.length === 0) {
       return (<div style={{ marginTop: "100px"}}><h2>No Guitars available</h2></div>);
     } else {
       return items;
@@ -30,4 +31,4 @@ class List extends Component {
   }
 }
 
-export default List; 
+export default List;

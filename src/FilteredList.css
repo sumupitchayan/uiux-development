@@ -80,6 +80,7 @@ body {
     font-weight: bold;
 }
 
+<<<<<<< HEAD
 #dropdown {
     width: 300px;
 }
@@ -107,3 +108,13 @@ body {
     width: calc((100% - 60px) / 3);
      margin: 10px;
 }
+=======
+#favorite {
+  width: 8%;
+  height: 8%
+}
+
+.dropdown {
+    width: 300px;
+}
+>>>>>>> e7961105466faf20a88e20acf156db87b07a2ff3
