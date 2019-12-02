@@ -19,7 +19,7 @@ class Guitar extends Component {
     }
 
   render() {
-    let favorite = this.state.fav;
+    let favorite = this.props.item.fav == "yes" ? true : false;
     return (
       <div className="item-cell">
         <img id="favorite" src = { favorite ? "images/heart.jpg" : "images/heart_outline.jpeg"} alt = "" align="right" onClick = {this.handleFavoriteChange.bind(this)}></img>

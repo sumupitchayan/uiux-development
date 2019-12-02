@@ -164,7 +164,7 @@ class FilteredList extends Component {
         </div>
 
         <div class="items-view">
-          <List items={this.props.items.filter(this.filterAndSearch).sort(this.sortPrice)} handleChange = {this.changeFav}  />
+          <List items={this.props.items.filter(this.filterAndSearch).sort(this.sortPrice)} handleChange = {this.changeFav.bind(this)}  />
         </div>
 
       </div>
