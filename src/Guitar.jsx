@@ -9,11 +9,11 @@ class Guitar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: 0,
-            name: "",
-            type: "",
-            brand: "",
-            price: 0,
+            id: this.props.item.id,
+            name: this.props.item.name,
+            type: this.props.item.type,
+            brand: this.props.item.type,
+            price: this.props.item.price,
             fav: false,
         };
     }
@@ -23,10 +23,16 @@ class Guitar extends Component {
     }
 
   render() {
+    let favorite = this.state.fav;
     return (
-      this.renderList()
+      <div className="item-cell">
+        <img id="favorite" src = { favorite ? "images/heart.jpg" : "images/heart_outline.jpeg"} alt = "" align="right" onClick = {this.handleFavoriteChange.bind(this)}></img>
+        <p><img src={"images/guitars/" + this.state.id + ".png"} alt={this.state.name}></img></p>
+        <h3>{this.state.brand} {this.state.name}</h3>
+        <h3 id="price">${this.state.price}.00</h3>
+      </div>
     );
   }
 }
 
-export default List;
+export default Guitar;
