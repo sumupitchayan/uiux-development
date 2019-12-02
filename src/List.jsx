@@ -20,12 +20,11 @@ class List extends Component {
   }
   renderList() {
     const items = this.props.items.map(itm => {
-      let favorite = this.state.fav;
       return (
-        <Guitar item = {itm}/>
+        <Guitar item = {itm} handleFav = {this.props.handleChange}/>
       );
     });
-    if (items.length === 0) {
+    if (items.length == 0) {
       return (<div style={{ marginTop: "100px"}}><h2>No Guitars available</h2></div>);
     } else {
       return items;

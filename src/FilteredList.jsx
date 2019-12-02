@@ -3,6 +3,10 @@ import { DropdownButton, Dropdown} from "react-bootstrap";
 import List from "./List";
 import './FilteredList.css';
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
+import Switch from 'react-input-switch';
+import { useState } from 'react';
+
+
 
 class FilteredList extends Component {
   constructor(props) {
@@ -12,7 +16,8 @@ class FilteredList extends Component {
       brand: "All",
       sort: "",
       acoustic: false,
-      electric: true
+      electric: true,
+      fav: "no"
     };
   }
 
@@ -26,6 +31,20 @@ class FilteredList extends Component {
   handleAcousticChange() {
     const opposite = this.state.acoustic;
     this.setState({acoustic: opposite});
+  }
+
+  changeFav = (item, fav) => {
+    for(let i = 0; i < this.props.items.length; i++){
+      if(this.props.items[i].id == item.id){
+        if(fav){
+          this.props.items[i].fav = "no";
+        }
+        else{
+          this.props.items[i].fav = "yes";
+        }
+        break;
+      }
+    }
   }
 
   // handleElectricChange() {
@@ -70,11 +89,15 @@ class FilteredList extends Component {
     //   }
     // }
     if ((item.type == this.state.type) || (this.state.type == "Acoustic and Electric")) {
-      if (item.brand == this.state.brand || this.state.brand == "All") {
+      if ((item.brand == this.state.brand || this.state.brand == "All") && (this.state.fav == "no" || item.fav == this.state.fav)) {
         return true;
       }
     }
     return false;
+  }
+
+  toggleFavorite = fav => {
+    this.setState({fav})
   }
 
   /*
@@ -131,10 +154,17 @@ class FilteredList extends Component {
           </DropdownButton>
 
           {/* <input type="text" placeholder="Search" onChange={this.onSearch} /> */}
+          <h3>Favorites: {this.state.fav}</h3>
+          <Switch id = "switch"
+                  on="yes"
+                  off="no"
+                  value={this.state.fav}
+                  onChange={this.toggleFavorite}
+                />
         </div>
 
         <div class="items-view">
-          <List items={this.props.items.filter(this.filterAndSearch).sort(this.sortPrice)} />
+          <List items={this.props.items.filter(this.filterAndSearch).sort(this.sortPrice)} handleChange = {this.changeFav}  />
         </div>
 
       </div>

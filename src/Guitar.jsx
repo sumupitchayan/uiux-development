@@ -9,16 +9,12 @@ class Guitar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: this.props.item.id,
-            name: this.props.item.name,
-            type: this.props.item.type,
-            brand: this.props.item.type,
-            price: this.props.item.price,
-            fav: false,
+            fav: this.props.item.fav == "no" ? false : true,
         };
     }
 
     handleFavoriteChange() {
+        this.props.handleFav(this.props.item, this.state.fav)
         this.setState({fav: !this.state.fav});
     }
 
@@ -27,9 +23,9 @@ class Guitar extends Component {
     return (
       <div className="item-cell">
         <img id="favorite" src = { favorite ? "images/heart.jpg" : "images/heart_outline.jpeg"} alt = "" align="right" onClick = {this.handleFavoriteChange.bind(this)}></img>
-        <p><img src={"images/guitars/" + this.state.id + ".png"} alt={this.state.name}></img></p>
-        <h3>{this.state.brand} {this.state.name}</h3>
-        <h3 id="price">${this.state.price}.00</h3>
+        <p><img src={"images/guitars/" + this.props.item.id + ".png"} alt={this.props.item.name}></img></p>
+        <h3>{this.props.item.brand} {this.props.item.name}</h3>
+        <h3 id="price">${this.props.item.price}.00</h3>
       </div>
     );
   }
