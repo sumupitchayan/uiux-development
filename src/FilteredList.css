@@ -80,6 +80,30 @@ body {
     font-weight: bold;
 }
 
-.dropdown {
+#dropdown {
     width: 300px;
+}
+
+
+#typeDropdown {
+    color: brown;
+    font-size: 200%;
+}
+
+#typeDropdown {
+    width: 300px;
+    margin: 10px;
+}
+
+.dropdown-menu {
+    font-size: 200%;
+    color: brown;
+}
+
+.label {
+    font-size: 200%;
+    background-color: brown;
+    float: left; 
+    width: calc((100% - 60px) / 3);
+     margin: 10px;
 }

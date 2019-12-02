@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { DropdownButton, Dropdown} from "react-bootstrap";
 import List from "./List";
 import './FilteredList.css';
+import { RadioGroup, RadioButton } from 'react-radio-buttons';
 
 class FilteredList extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class FilteredList extends Component {
       type: "Acoustic and Electric",
       brand: "All",
       sort: "",
+      acoustic: false,
+      electric: true
     };
   }
 
@@ -19,6 +22,15 @@ class FilteredList extends Component {
   onFilterType = (event) => {
     this.setState({type: event});
   }
+
+  handleAcousticChange() {
+    const opposite = this.state.acoustic;
+    this.setState({acoustic: opposite});
+  }
+
+  // handleElectricChange() {
+  //   this.setState({electric: !this.electric});
+  // }
 
   onFilterBrand = (event) => {
     this.setState({brand: event});
@@ -52,7 +64,12 @@ class FilteredList extends Component {
    */
   matchesFilters = item => {
     // Checks if the type matches the filter Brand and Type (Acoustic/Electric)
-    if (item.type == this.state.type || this.state.type == "Acoustic and Electric") {
+    // if ((item.type == "Acoustic" && this.state.acoustic) || (item.type == "Electric" && this.state.electric)) {
+    //   if (item.brand == this.state.brand || this.state.brand == "All") {
+    //     return true;
+    //   }
+    // }
+    if ((item.type == this.state.type) || (this.state.type == "Acoustic and Electric")) {
       if (item.brand == this.state.brand || this.state.brand == "All") {
         return true;
       }
@@ -74,21 +91,38 @@ class FilteredList extends Component {
       <div className="main-content">
         <div className="filter-list">
           <h3>Sort: {this.state.sort}</h3>
-          <DropdownButton title="On price" id="dropdown-basic-button">
+          <DropdownButton id = "dropdown" title="On price" id="dropdown-basic-button">
             <Dropdown.Item eventKey="Price Low to High" onSelect={this.onSort}>Price Low to High</Dropdown.Item>
             <Dropdown.Item eventKey="Price High to Low" onSelect={this.onSort}>Price High to Low</Dropdown.Item>
             <Dropdown.Item eventKey="" onSelect={this.onSort}>None</Dropdown.Item>
           </DropdownButton>
 
           <h3>Type: {this.state.type}</h3>
-          <DropdownButton title="Acoustic or Electric" id="dropdown-basic-button">
+          <DropdownButton id = "dropdown" title="Acoustic or Electric" id="dropdown-basic-button">
             <Dropdown.Item eventKey="Acoustic" onSelect={this.onFilterType}>Acoustic</Dropdown.Item>
             <Dropdown.Item eventKey="Electric" onSelect={this.onFilterType}>Electric</Dropdown.Item>
             <Dropdown.Item eventKey="Acoustic and Electric" onSelect={this.onFilterType}>Both</Dropdown.Item>
           </DropdownButton>
 
+          {/* <RadioGroup title="Type" onChange={ this.onFilterType } horizontal>
+            <RadioButton value="apple" eventKey="Acoustic">
+              Apple
+            </RadioButton>
+          </RadioGroup> */}
+
+          {/* <ul className="radio-group">
+            <li>
+              <label>
+                <input type="radio" value="acoustic" checked={this.state.acoustic} onChange={this.handleAcousticChange}/>
+                Acoustic
+              </label>
+            </li>
+          </ul> */}
+
+
+
           <h3>Brand: {this.state.brand}</h3>
-          <DropdownButton title="Brand" id="dropdown-basic-button">
+          <DropdownButton id = "dropdown" title="Brand" id="dropdown-basic-button">
             <Dropdown.Item eventKey="All" onSelect={this.onFilterBrand}>All</Dropdown.Item>
             <Dropdown.Item eventKey="Fender" onSelect={this.onFilterBrand}>Fender</Dropdown.Item>
             <Dropdown.Item eventKey="Gibson" onSelect={this.onFilterBrand}>Gibson</Dropdown.Item>
