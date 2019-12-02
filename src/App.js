@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import HelloWorld from "./HelloWorld";
 import Counter from "./Counter";
 import FilteredList from "./FilteredList";
 
@@ -31,7 +30,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <HelloWorld />
+        <div className="jumbotron">
+          <h1>Welcome to Guitar Center</h1>
+          <h2>Here's our list of guitars for the holiday season</h2>
+        </div>
         <FilteredList items = {guitars} />
       </div>
     );

@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-// import { Container, Row, Col, Grid } from 'reactstrap';
-// import Thumbnail from 'react-thumbnail';
 import { Thumbnail, Grid, Row, Col } from 'react-bootstrap';
-// import Grid from 'reactstrap';
 import './FilteredList.css';
 
 class Guitar extends Component {
@@ -22,7 +19,6 @@ class Guitar extends Component {
     let favorite = this.props.item.fav == "yes" ? true : false;
     return (
       <div className="item-cell">
-        {/* <img id="favorite" src = { favorite ? "images/heart.jpg" : "images/heart_outline.jpeg"} alt = "" align="right" onClick = {this.handleFavoriteChange.bind(this)}></img> */}
         <img id="favorite" src = { favorite? "images/heart.jpg" : "images/heart_outline.jpeg"} alt = "" align="right" onClick = {this.handleFavoriteChange.bind(this)}></img>
         <p><img src={"images/guitars/" + this.props.item.id + ".png"} alt={this.props.item.name}></img></p>
         <h3>{this.props.item.brand} {this.props.item.name}</h3>
