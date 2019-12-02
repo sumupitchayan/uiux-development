@@ -6,14 +6,18 @@ import { Thumbnail, Grid, Row, Col } from 'react-bootstrap';
 import './FilteredList.css';
 
 class List extends Component {
+  
+  setFav(){
+    document.getElementById("favorite")[0].src = "heart.jpeg"
+  }
   renderList() {
     const items = this.props.items.map(item => {
       return (
         <div className="item-cell">
-          <img src={"images/guitars/" + item.id + ".png"} alt={item.name}></img>
+          <img id="favorite" src = "images/heart_outline.jpeg" alt = "" align="right" onClick = {this.setFav}></img>
+          <p><img src={"images/guitars/" + item.id + ".png"} alt={item.name}></img></p>
           <h3>{item.brand} {item.name}</h3>
           <h3 id="price">${item.price}.00</h3>
-          <img id="favorite" src = "images/heart_outline.jpeg" alt = ""></img>
         </div>
       );
     });
