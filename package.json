@@ -9,6 +9,7 @@
     "react-input-switch": "^2.2.1",
     "react-radio-buttons": "^1.2.2",
     "react-scripts": "3.2.0",
+    "react-switch": "^5.0.1",
     "react-thumbnail": "^1.0.0"
   },
   "scripts": {

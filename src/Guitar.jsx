@@ -22,7 +22,8 @@ class Guitar extends Component {
     let favorite = this.state.fav;
     return (
       <div className="item-cell">
-        <img id="favorite" src = { favorite ? "images/heart.jpg" : "images/heart_outline.jpeg"} alt = "" align="right" onClick = {this.handleFavoriteChange.bind(this)}></img>
+        {/* <img id="favorite" src = { favorite ? "images/heart.jpg" : "images/heart_outline.jpeg"} alt = "" align="right" onClick = {this.handleFavoriteChange.bind(this)}></img> */}
+        <img id="favorite" src = { favorite? "images/heart.jpg" : "images/heart_outline.jpeg"} alt = "" align="right" onClick = {this.handleFavoriteChange.bind(this)}></img>
         <p><img src={"images/guitars/" + this.props.item.id + ".png"} alt={this.props.item.name}></img></p>
         <h3>{this.props.item.brand} {this.props.item.name}</h3>
         <h3 id="price">${this.props.item.price}.00</h3>

@@ -89,10 +89,17 @@ class FilteredList extends Component {
     //   }
     // }
     if ((item.type == this.state.type) || (this.state.type == "Acoustic and Electric")) {
-      if ((item.brand == this.state.brand || this.state.brand == "All") && (this.state.fav == "no" || item.fav == this.state.fav)) {
-        return true;
+      if ((item.brand == this.state.brand || this.state.brand == "All")) {
+        if (this.state.fav == "no" || item.fav == this.state.fav) {
+          return true;
+        }
       }
     }
+    // if ((item.type == this.state.type) || (this.state.type == "Acoustic and Electric")) {
+    //   if ((item.brand == this.state.brand || this.state.brand == "All") && (this.state.fav == "no" || item.fav == this.state.fav)) {
+    //     return true;
+    //   }
+    // }
     return false;
   }
 
