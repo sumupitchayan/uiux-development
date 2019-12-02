@@ -80,6 +80,11 @@ body {
     font-weight: bold;
 }
 
+#favorite {
+  width: 8%;
+  height: 8%
+}
+
 .dropdown {
     width: 300px;
 }
