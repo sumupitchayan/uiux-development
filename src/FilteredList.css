@@ -2,10 +2,14 @@ body {
     background-color: lightgray;
 }
 
+/*
+Jumbotron / Header CSS:
+*/
 .jumbotron {
     width: 100%;
     height: 400px;
     margin-bottom: 0%;
+    background-color: gray;
 }
 
 .jumbotron h1 {
@@ -18,11 +22,17 @@ body {
     color: darkred;
 }
 
+/*
+Sets the main grid content layout for the page
+*/
 .main-content {
     display: grid;
     grid-template-columns: 20%;
 }
 
+/*
+Filter List CSS:
+*/
 .filter-list {
     color: black;
     grid-row: 1;
@@ -37,8 +47,61 @@ body {
     font-size: 40px;
     padding-top: 5%;
     padding-bottom: 3%;
+    border-width: 2px;
+    border-color: brown;
 }
 
+.filter-list {
+    font-size: 40px;
+}
+
+#dropdown {
+    height: 100%;
+    background-color: darkred;
+    font-size: 40px;
+    border-width: 0;
+}
+
+#dropdown-option {
+    font-size: 40px;
+}
+
+.favorites-filter {
+    /* padding-top: 30px;
+    display: grid;
+    grid-template-columns: auto; */
+    /* border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: darkred; */
+}
+
+/* .favorites img {
+    grid-row: 1;
+    grid-column: 1;
+} */
+
+.favorites-filter h3 {
+    /* grid-row: 1;
+    grid-column: 2; */
+    /* text-align: left; */
+    /* color: darkred; */
+}
+
+#switch {
+    width: 20%;
+    height: 30px;
+    /* color: darkred; */
+    /* width: 50%;
+    height: 30%; */
+    /* grid-row: 1;
+    grid-column: 3; */
+    /* align-content: center; */
+  } 
+
+/*
+Items List Cells CSS:
+*/
 .items-view {
     background-color: white;
     grid-row: 1;
@@ -74,45 +137,8 @@ body {
     font-weight: bold;
 }
 
-#dropdown {
-    width: 300px;
-}
-
-
-#typeDropdown {
-    color: brown;
-    font-size: 200%;
-}
-
-#typeDropdown {
-    width: 300px;
-    margin: 10px;
-}
-
-.dropdown-menu {
-    font-size: 200%;
-    color: brown;
-}
-
-.label {
-    font-size: 200%;
-    background-color: brown;
-    float: left;
-    width: calc((100% - 60px) / 3);
-     margin: 10px;
-}
-
 #favorite {
   width: 65px;
   height: 65px;
   padding: 10px;
-}
-
-#switch{
-  width: 30px;
-  height: 20px;
-}
-
-.dropdown {
-    width: 300px;
 }

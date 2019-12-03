@@ -3,9 +3,9 @@ import { DropdownButton, Dropdown} from "react-bootstrap";
 import List from "./List";
 import './FilteredList.css';
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
+// import Switch from "react-switch";
 import Switch from 'react-input-switch';
 import { useState } from 'react';
-
 
 
 class FilteredList extends Component {
@@ -14,42 +14,17 @@ class FilteredList extends Component {
     this.state = {
       type: "Acoustic and Electric",
       brand: "All",
-      sort: "",
-      acoustic: false,
-      electric: true,
+      sort: "None",
       fav: "no"
     };
   }
 
   /*
-  The following three methods change the state filter/sort options
+  The following four methods change the state filter/sort options
   */
   onFilterType = (event) => {
     this.setState({type: event});
   }
-
-  handleAcousticChange() {
-    const opposite = this.state.acoustic;
-    this.setState({acoustic: opposite});
-  }
-
-  changeFav = (item, fav) => {
-    for(let i = 0; i < this.props.items.length; i++){
-      if(this.props.items[i].id == item.id){
-        if(fav){
-          this.props.items[i].fav = "no";
-        }
-        else{
-          this.props.items[i].fav = "yes";
-        }
-        break;
-      }
-    }
-  }
-
-  // handleElectricChange() {
-  //   this.setState({electric: !this.electric});
-  // }
 
   onFilterBrand = (event) => {
     this.setState({brand: event});
@@ -59,6 +34,13 @@ class FilteredList extends Component {
     this.setState({sort: event});
   }
 
+  onFilterFavorite = (event) => {
+    this.setState({fav: event});
+  }
+
+  /*
+  Sorts items by their prices depending state sort variable
+  */
   sortPrice = (item1, item2) => {
     if (this.state.sort === "") {
       return 0;
@@ -82,12 +64,7 @@ class FilteredList extends Component {
    * Output: true or false
    */
   matchesFilters = item => {
-    // Checks if the type matches the filter Brand and Type (Acoustic/Electric)
-    // if ((item.type == "Acoustic" && this.state.acoustic) || (item.type == "Electric" && this.state.electric)) {
-    //   if (item.brand == this.state.brand || this.state.brand == "All") {
-    //     return true;
-    //   }
-    // }
+    // Checks if the type matches the filter Brand, Type (Acoustic/Electric) and Favorite toggle state
     if ((item.type == this.state.type) || (this.state.type == "Acoustic and Electric")) {
       if ((item.brand == this.state.brand || this.state.brand == "All")) {
         if (this.state.fav == "no" || item.fav == this.state.fav) {
@@ -98,8 +75,18 @@ class FilteredList extends Component {
     return false;
   }
 
-  toggleFavorite = fav => {
-    this.setState({fav})
+  changeFav = (item, fav) => {
+    for(let i = 0; i < this.props.items.length; i++){
+      if(this.props.items[i].id == item.id){
+        if(fav){
+          this.props.items[i].fav = "no";
+        }
+        else {
+          this.props.items[i].fav = "yes";
+        }
+        break;
+      }
+    }
   }
 
   /*
@@ -108,65 +95,64 @@ class FilteredList extends Component {
    * return list.
    */
   filterAndSearch = item => {
-    return item.name.toLowerCase().search(this.state.search) !== -1 && this.matchesFilters(item);
+    return this.matchesFilters(item);
   }
 
   render() {
+    let favorite = this.state.fav == "yes" ? true : false;
     return (
       <div className="main-content">
         <div className="filter-list">
-          <h3>Sort: {this.state.sort}</h3>
-          <DropdownButton id = "dropdown" title="On price" id="dropdown-basic-button">
-            <Dropdown.Item eventKey="Price Low to High" onSelect={this.onSort}>Price Low to High</Dropdown.Item>
-            <Dropdown.Item eventKey="Price High to Low" onSelect={this.onSort}>Price High to Low</Dropdown.Item>
-            <Dropdown.Item eventKey="" onSelect={this.onSort}>None</Dropdown.Item>
+
+          <div className="filter">
+            <h3 className="filter-title">Sort</h3>
+            <DropdownButton id = "dropdown" title={this.state.sort}>
+              <Dropdown.Item id ="dropdown-option" eventKey="Price Low to High" onSelect={this.onSort}>Price Low to High</Dropdown.Item>
+              <Dropdown.Item id ="dropdown-option" eventKey="Price High to Low" onSelect={this.onSort}>Price High to Low</Dropdown.Item>
+              <Dropdown.Item id ="dropdown-option" eventKey="None" onSelect={this.onSort}>None</Dropdown.Item>
+            </DropdownButton>
+          </div>
+
+          <h3>Type</h3>
+          <DropdownButton id = "dropdown" title={this.state.type}> 
+            <Dropdown.Item id = "dropdown-option" eventKey="Acoustic" onSelect={this.onFilterType}>Acoustic</Dropdown.Item>
+            <Dropdown.Item id = "dropdown-option" eventKey="Electric" onSelect={this.onFilterType}>Electric</Dropdown.Item>
+            <Dropdown.Item id ="dropdown-option" eventKey="Acoustic and Electric" onSelect={this.onFilterType}>Both</Dropdown.Item>
           </DropdownButton>
 
-          <h3>Type: {this.state.type}</h3>
-          <DropdownButton id = "dropdown" title="Acoustic or Electric" id="dropdown-basic-button">
-            <Dropdown.Item eventKey="Acoustic" onSelect={this.onFilterType}>Acoustic</Dropdown.Item>
-            <Dropdown.Item eventKey="Electric" onSelect={this.onFilterType}>Electric</Dropdown.Item>
-            <Dropdown.Item eventKey="Acoustic and Electric" onSelect={this.onFilterType}>Both</Dropdown.Item>
+          <h3>Brand</h3>
+          <DropdownButton id = "dropdown" title={this.state.brand}>
+            <Dropdown.Item id = "dropdown-option" eventKey="All" onSelect={this.onFilterBrand}>All</Dropdown.Item>
+            <Dropdown.Item id = "dropdown-option" eventKey="Fender" onSelect={this.onFilterBrand}>Fender</Dropdown.Item>
+            <Dropdown.Item id = "dropdown-option" eventKey="Gibson" onSelect={this.onFilterBrand}>Gibson</Dropdown.Item>
+            <Dropdown.Item id = "dropdown-option" eventKey="Martin" onSelect={this.onFilterBrand}>Martin</Dropdown.Item>
+            <Dropdown.Item id = "dropdown-option" eventKey="Taylor" onSelect={this.onFilterBrand}>Taylor</Dropdown.Item>
           </DropdownButton>
 
-          {/* <RadioGroup title="Type" onChange={ this.onFilterType } horizontal>
-            <RadioButton value="apple" eventKey="Acoustic">
-              Apple
-            </RadioButton>
-          </RadioGroup> */}
+          <div className="favorites-filter">
+            {/* <img id="favorite" src = { favorite? "images/heart.png" : "images/heart_outline.png"} alt = "" align="left"></img> */}
+            <h3>Favorites</h3>
 
-          {/* <ul className="radio-group">
-            <li>
-              <label>
-                <input type="radio" value="acoustic" checked={this.state.acoustic} onChange={this.handleAcousticChange}/>
-                Acoustic
-              </label>
-            </li>
-          </ul> */}
+            {/* <Switch id="switch" onChange={this.handleChange} checked={this.state.fav == "yes"} uncheckedIcon={false} checkedIcon={false}/> */}
+            <Switch id ="switch" on="yes" off="no" value={this.state.fav} onChange={this.onFilterFavorite}
+            styles={{
+              track: {
+                backgroundColor: 'darkRed'
+              },
+              trackChecked: {
+                backgroundColor: 'darkRed'
+              },
+              button: {
+                backgroundColor: 'white'
+              },
+            }}/>
+          </div>
 
 
-
-          <h3>Brand: {this.state.brand}</h3>
-          <DropdownButton id = "dropdown" title="Brand" id="dropdown-basic-button">
-            <Dropdown.Item eventKey="All" onSelect={this.onFilterBrand}>All</Dropdown.Item>
-            <Dropdown.Item eventKey="Fender" onSelect={this.onFilterBrand}>Fender</Dropdown.Item>
-            <Dropdown.Item eventKey="Gibson" onSelect={this.onFilterBrand}>Gibson</Dropdown.Item>
-            <Dropdown.Item eventKey="Martin" onSelect={this.onFilterBrand}>Martin</Dropdown.Item>
-            <Dropdown.Item eventKey="Taylor" onSelect={this.onFilterBrand}>Taylor</Dropdown.Item>
-          </DropdownButton>
-
-          {/* <input type="text" placeholder="Search" onChange={this.onSearch} /> */}
-          <h3>Favorites: {this.state.fav}</h3>
-          <Switch id = "switch"
-                  on="yes"
-                  off="no"
-                  value={this.state.fav}
-                  onChange={this.toggleFavorite}
-                />
         </div>
 
         <div class="items-view">
-          <List items={this.props.items.filter(this.filterAndSearch).sort(this.sortPrice)} handleChange = {this.changeFav.bind(this)}  />
+          <List items={this.props.items.filter(this.filterAndSearch).sort(this.sortPrice)} handleChange = {this.changeFav}  />
         </div>
 
       </div>

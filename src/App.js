@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import Counter from "./Counter";
 import FilteredList from "./FilteredList";
 
+// List of guitars items
 var guitars = [
   {id: 1, name: "Les Paul Traditional Pro V", type: "Electric", brand: "Gibson", price: 2799, fav: "no"},
   {id: 2, name: "American Maple Statocaster", type: "Electric", brand: "Fender", price: 1550, fav: "no"},
@@ -30,11 +30,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <div className="jumbotron">
           <h1>Welcome to Guitar Center</h1>
           <h2>Here's our list of guitars for the holiday season</h2>
         </div>
+
         <FilteredList items = {guitars} />
+
       </div>
     );
   }
