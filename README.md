@@ -1,10 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## React Development: Guitar Center Website
 
-In the project directory, you can run:
+Project Link: https://agile-ocean-30189.herokuapp.com/
 
-### `Background`
+### Background
 
 We built an example search page for Guitar Center. Our website allows users to browse guitars for sale and filter the offerings based on type (acoustic/electric) and brand, sort them based on price, and mark items as favorited. The goal of the website is to make the online guitar search/buying process as simple and efficient as possible for customers.
 
