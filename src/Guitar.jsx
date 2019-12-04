@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Thumbnail, Grid, Row, Col } from 'react-bootstrap';
 import './FilteredList.css';
 
 class Guitar extends Component {

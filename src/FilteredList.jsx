@@ -93,7 +93,7 @@ class FilteredList extends Component {
    * in the list. If this fucntion returns true for a given element, filter() will add that element to its
    * return list.
    */
-  filterAndSearch = item => {
+  filterItems = item => {
     return this.matchesFilters(item);
   }
 
@@ -113,7 +113,7 @@ class FilteredList extends Component {
           </div>
 
           <h3>Type</h3>
-          <DropdownButton id = "dropdown" title={this.state.type}> 
+          <DropdownButton id = "dropdown" title={this.state.type}>
             <Dropdown.Item id = "dropdown-option" eventKey="Acoustic" onSelect={this.onFilterType}>Acoustic</Dropdown.Item>
             <Dropdown.Item id = "dropdown-option" eventKey="Electric" onSelect={this.onFilterType}>Electric</Dropdown.Item>
             <Dropdown.Item id ="dropdown-option" eventKey="Acoustic and Electric" onSelect={this.onFilterType}>Both</Dropdown.Item>
@@ -129,7 +129,7 @@ class FilteredList extends Component {
           </DropdownButton>
 
           <div className="favorites-filter">
-          <img id="favorite" src = { favorite? "images/heart.png" : "images/heart_outline.png"} alt = "" align="left"></img>
+          <img src = { favorite? "images/heart.png" : "images/heart_outline.png"} alt = "" align="left"></img>
           <h3>Favorites</h3>
           <Switch id ="switch" on="yes" off="no" value={this.state.fav} onChange={this.onFilterFavorite}
             styles={{
@@ -148,7 +148,7 @@ class FilteredList extends Component {
         </div>
 
         <div class="items-view">
-          <List items={this.props.items.filter(this.filterAndSearch).sort(this.sortPrice)} handleChange = {this.changeFav}  />
+          <List items={this.props.items.filter(this.filterItems).sort(this.sortPrice)} handleChange = {this.changeFav}  />
         </div>
 
       </div>
