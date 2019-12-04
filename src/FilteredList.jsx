@@ -3,7 +3,6 @@ import { DropdownButton, Dropdown} from "react-bootstrap";
 import List from "./List";
 import './FilteredList.css';
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
-// import Switch from "react-switch";
 import Switch from 'react-input-switch';
 import { useState } from 'react';
 
@@ -130,14 +129,12 @@ class FilteredList extends Component {
           </DropdownButton>
 
           <div className="favorites-filter">
-            {/* <img id="favorite" src = { favorite? "images/heart.png" : "images/heart_outline.png"} alt = "" align="left"></img> */}
-            <h3>Favorites</h3>
-
-            {/* <Switch id="switch" onChange={this.handleChange} checked={this.state.fav == "yes"} uncheckedIcon={false} checkedIcon={false}/> */}
-            <Switch id ="switch" on="yes" off="no" value={this.state.fav} onChange={this.onFilterFavorite}
+          <img id="favorite" src = { favorite? "images/heart.png" : "images/heart_outline.png"} alt = "" align="left"></img>
+          <h3>Favorites</h3>
+          <Switch id ="switch" on="yes" off="no" value={this.state.fav} onChange={this.onFilterFavorite}
             styles={{
               track: {
-                backgroundColor: 'darkRed'
+                backgroundColor: 'gray'
               },
               trackChecked: {
                 backgroundColor: 'darkRed'
@@ -147,7 +144,6 @@ class FilteredList extends Component {
               },
             }}/>
           </div>
-
 
         </div>
 

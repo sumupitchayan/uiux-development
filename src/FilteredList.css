@@ -67,30 +67,33 @@ Filter List CSS:
 }
 
 .favorites-filter {
-    /* padding-top: 30px;
+    padding-top: 30px;
     display: grid;
-    grid-template-columns: auto; */
+    grid-template-columns: 15% 40%;
+    align-items: center;
     /* border-style: solid;
     border-width: 2px;
     border-radius: 10px;
     border-color: darkred; */
 }
 
-/* .favorites img {
+.favorites img {
     grid-row: 1;
     grid-column: 1;
-} */
+}
 
 .favorites-filter h3 {
-    /* grid-row: 1;
-    grid-column: 2; */
-    /* text-align: left; */
+    grid-row: 1;
+    grid-column: 2;
+    text-align: left;
     /* color: darkred; */
 }
 
 #switch {
-    width: 20%;
-    height: 30px;
+    width: 30%;
+    height: 40%;
+    grid-row: 1;
+    grid-column: 3;
     /* color: darkred; */
     /* width: 50%;
     height: 30%; */
