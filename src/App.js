@@ -25,18 +25,20 @@ var guitars = [
   {id: 19, name: "Professional Stratocaster", type: "Electric", brand: "Fender", price: 1550, fav: "no"},
   {id: 20, name: "125th Anniversary Hummingbird", type: "Acoustic", brand: "Gibson", price: 5499, fav: "no"}
 ]
-
+// starting point of the application
 class App extends Component {
   render() {
     return (
       <div className="App">
 
         <div className="jumbotron">
+          {/*creates the heading for the page*/}
           <h1>Welcome to Guitar Center</h1>
           <h2>Here's our list of guitars for the holiday season</h2>
         </div>
 
         <FilteredList items = {guitars} />
+        {/*creates the filtered list*/}
 
       </div>
     );

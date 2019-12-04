@@ -10,7 +10,7 @@ import { useState } from 'react';
 class FilteredList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { //initial states
       type: "Acoustic and Electric",
       brand: "All",
       sort: "None",
@@ -50,16 +50,10 @@ class FilteredList extends Component {
     }
   }
 
-  //Sets the state whenever the user types on the search bar
-  onSearch = event => {
-    this.setState({ search: event.target.value.trim().toLowerCase() });
-  };
-
   /*
    * This function should determine whether the item being passed in matches the type
-   * that we are filtering on. Remember that the selected type we are filtering on is stored
-   * in this.state!
-   * Input: An element from your List component
+   * that we are filtering on.
+   * Input: An element from List component
    * Output: true or false
    */
   matchesFilters = item => {
@@ -73,6 +67,10 @@ class FilteredList extends Component {
     }
     return false;
   }
+
+  /*
+  * This function changes the data if it has been favorited by the user setting the fav field to yes
+  */
 
   changeFav = (item, fav) => {
     for(let i = 0; i < this.props.items.length; i++){
@@ -101,6 +99,7 @@ class FilteredList extends Component {
     let favorite = this.state.fav == "yes" ? true : false;
     return (
       <div className="main-content">
+        {/* renders the dropdowns for the list */}
         <div className="filter-list">
 
           <div className="filter">
@@ -127,10 +126,11 @@ class FilteredList extends Component {
             <Dropdown.Item id = "dropdown-option" eventKey="Martin" onSelect={this.onFilterBrand}>Martin</Dropdown.Item>
             <Dropdown.Item id = "dropdown-option" eventKey="Taylor" onSelect={this.onFilterBrand}>Taylor</Dropdown.Item>
           </DropdownButton>
-
+          {/* renders the favorites filter */}
           <div className="favorites-filter">
           <img src = { favorite? "images/heart.png" : "images/heart_outline.png"} alt = "" align="left"></img>
           <h3>Favorites</h3>
+          {/* switch toggle to control favorite */}
           <Switch id ="switch" on="yes" off="no" value={this.state.fav} onChange={this.onFilterFavorite}
             styles={{
               track: {
@@ -146,7 +146,7 @@ class FilteredList extends Component {
           </div>
 
         </div>
-
+        {/* renders item view and passes chnageFav as prop to control changing of data when user clicks to favorite */}
         <div class="items-view">
           <List items={this.props.items.filter(this.filterItems).sort(this.sortPrice)} handleChange = {this.changeFav}  />
         </div>

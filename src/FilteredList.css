@@ -54,7 +54,7 @@ Filter List CSS:
 .filter-list {
     font-size: 1.5vw;
 }
-
+/* for the dropdown */
 #dropdown {
     height: 100%;
     background-color: darkred;
@@ -66,6 +66,7 @@ Filter List CSS:
     font-size: 1.5vw;
 }
 
+/* Favorite filter CSS */
 .favorites-filter {
     padding-top: 30px;
     display: grid;
