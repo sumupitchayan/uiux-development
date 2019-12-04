@@ -1,23 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## React Development: Guitar Center Website
 
 In the project directory, you can run:
 
-### `npm start`
+### `Background`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+We built an example search page for Guitar Center. Our website allows users to browse guitars for sale and filter the offerings based on type (acoustic/electric) and brand, sort them based on price, and mark items as favorited. The goal of the website is to make the online guitar search/buying process as simple and efficient as possible for customers.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
+### `Design`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `React`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
