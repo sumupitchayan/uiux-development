@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { DropdownButton, Dropdown} from "react-bootstrap";
 import List from "./List";
+import FavoritesFilter from "./FavoritesFilter";
 import './FilteredList.css';
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import Switch from 'react-input-switch';
@@ -127,23 +128,7 @@ class FilteredList extends Component {
             <Dropdown.Item id = "dropdown-option" eventKey="Taylor" onSelect={this.onFilterBrand}>Taylor</Dropdown.Item>
           </DropdownButton>
           {/* renders the favorites filter */}
-          <div className="favorites-filter">
-          <img src = { favorite? "images/heart.png" : "images/heart_outline.png"} alt = "" align="left"></img>
-          <h3>Favorites</h3>
-          {/* switch toggle to control favorite */}
-          <Switch id ="switch" on="yes" off="no" value={this.state.fav} onChange={this.onFilterFavorite}
-            styles={{
-              track: {
-                backgroundColor: 'gray'
-              },
-              trackChecked: {
-                backgroundColor: 'darkRed'
-              },
-              button: {
-                backgroundColor: 'white'
-              },
-            }}/>
-          </div>
+          <FavoritesFilter fav = {this.state.fav} onFilterFavorite = {this.onFilterFavorite.bind(this)}/>
 
         </div>
         {/* renders item view and passes chnageFav as prop to control changing of data when user clicks to favorite */}
